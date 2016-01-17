@@ -14,11 +14,13 @@ public class StreamOperations {
 	public void start() {
 		List<Rating> ratings = RatingCreator.createRandomRatings();
 
-		print("Ratings:");
+		print("Ratings (name: grade)");
 		new Foreach().printEach(ratings);
 		print("Excellent " + new Filter().filterExcellentRatings(ratings));
 		print("Excellent names " + new Map().getNamesWhoAreExcellent(ratings));
-		print("Average " + new Reduce().computeAverage(ratings));
+
+		Double averageGrade = new Reduce().computeAverage(ratings);
+		print("Average grade " + String.format("%.2f", averageGrade));
 	}
 
 	private void print(String string) {

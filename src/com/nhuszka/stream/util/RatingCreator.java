@@ -9,13 +9,13 @@ import com.nhuszka.stream.bean.Rating;
 public class RatingCreator {
 
 	public static final Integer MAX_GRADE = 5;
-	private static final char[] CHARACTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
+	private static final char[] nameAbbreviations = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
 	public static List<Rating> createRandomRatings() {
 		List<Rating> ratings = new ArrayList<>();
 
-		for (char topic : CHARACTERS) {
-			ratings.add(createRandomRating(topic));
+		for (char nameAbbreviation : nameAbbreviations) {
+			ratings.add(createRandomRating(nameAbbreviation));
 		}
 
 		return ratings;
@@ -23,21 +23,21 @@ public class RatingCreator {
 
 	public static Rating createRandomRating() {
 		return new Rating.Builder()
-				.withName(generateTopic())
+				.withName(generateName())
 				.withGrade(generateGrade())
 				.build();
 	}
 
-	private static Rating createRandomRating(char topic) {
+	private static Rating createRandomRating(char nameAbbreviation) {
 		return new Rating.Builder()
-				.withName(topic + "")
+				.withName(nameAbbreviation + "")
 				.withGrade(generateGrade())
 				.build();
 	}
 
-	private static String generateTopic() {
-		int randomIndex = getRandomNumber(CHARACTERS.length);
-		return CHARACTERS[randomIndex] + "";
+	private static String generateName() {
+		int randomIndex = getRandomNumber(nameAbbreviations.length);
+		return nameAbbreviations[randomIndex] + "";
 	}
 
 	private static int getRandomNumber(int a) {

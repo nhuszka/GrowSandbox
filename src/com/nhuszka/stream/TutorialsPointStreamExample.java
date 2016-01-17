@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 public class TutorialsPointStreamExample {
 
+	// source:
+	// http://www.tutorialspoint.com//java8/java8_streams.htm
+
 	public void start() {
 		System.out.println("Using Java 7: ");
 

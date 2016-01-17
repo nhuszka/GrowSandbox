@@ -16,8 +16,9 @@ public class Rating {
 		return grade;
 	}
 
+	@Override
 	public String toString() {
-		return name + ": " + grade;
+		return name + grade;
 	}
 
 	public static class Builder {
