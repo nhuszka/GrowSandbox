@@ -1,5 +1,4 @@
-import com.nhuszka.stream.StreamOperations;
-
+package com.nhuszka.stream;
 public class StreamTester {
 
 	public static void main(String[] args) {
