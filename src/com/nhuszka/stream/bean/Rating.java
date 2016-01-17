@@ -2,14 +2,14 @@ package com.nhuszka.stream.bean;
 
 public class Rating {
 
-	private String topic;
+	private String name;
 	private Integer grade;
 
 	private Rating() {
 	}
 
-	public String getTopic() {
-		return topic;
+	public String getName() {
+		return name;
 	}
 
 	public Integer getGrade() {
@@ -17,7 +17,7 @@ public class Rating {
 	}
 
 	public String toString() {
-		return topic + ": " + grade;
+		return name + ": " + grade;
 	}
 
 	public static class Builder {
@@ -28,8 +28,8 @@ public class Rating {
 
 		}
 
-		public Builder withTopic(String topic) {
-			rating.topic = topic;
+		public Builder withName(String name) {
+			rating.name = name;
 			return this;
 		}
 

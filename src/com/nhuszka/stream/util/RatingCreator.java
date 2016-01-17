@@ -8,8 +8,8 @@ import com.nhuszka.stream.bean.Rating;
 
 public class RatingCreator {
 
+	public static final Integer MAX_GRADE = 5;
 	private static final char[] CHARACTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
-	private static final Integer MAX_GRADE = 5;
 
 	public static List<Rating> createRandomRatings() {
 		List<Rating> ratings = new ArrayList<>();
@@ -23,14 +23,14 @@ public class RatingCreator {
 
 	public static Rating createRandomRating() {
 		return new Rating.Builder()
-				.withTopic(generateTopic())
+				.withName(generateTopic())
 				.withGrade(generateGrade())
 				.build();
 	}
 
 	private static Rating createRandomRating(char topic) {
 		return new Rating.Builder()
-				.withTopic(topic + "")
+				.withName(topic + "")
 				.withGrade(generateGrade())
 				.build();
 	}
@@ -45,6 +45,6 @@ public class RatingCreator {
 	}
 
 	private static Integer generateGrade() {
-		return getRandomNumber(MAX_GRADE + 1);
+		return getRandomNumber(MAX_GRADE) + 1;
 	}
 }
