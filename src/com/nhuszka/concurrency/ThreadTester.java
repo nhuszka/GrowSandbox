@@ -24,19 +24,27 @@ public class ThreadTester {
 	}
 
 	private static void testThreadSafeAndNotSafe() {
-		Amount amount = new NotThreadSafeAmount();
+		Amount amountNotSafe = new NotThreadSafeAmount();
 		System.out.println("\nNot thread safe");
-		testAmountIncrement(amount);
+		testAmountIncrement(amountNotSafe);
+		sleep(500);
+		System.out.println(amountNotSafe.getAmountHistory());
 
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleep(200);
 
 		Amount amountSafe = new ThreadSafeAmount();
 		System.out.println("\nThread safe");
 		testAmountIncrement(amountSafe);
+		sleep(500);
+		System.out.println(amountSafe.getAmountHistory());
+	}
+
+	private static void sleep(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void testAmountIncrement(Amount amount) {

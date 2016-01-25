@@ -5,6 +5,6 @@ public class ThreadSafeAmount extends Amount {
 	@Override
 	public synchronized void incrementAmount() {
 		amount++;
-		System.out.println(amount);
+		amountHistory.append(amount).append("\n");
 	}
 }

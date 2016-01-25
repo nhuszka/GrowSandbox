@@ -5,6 +5,6 @@ public class NotThreadSafeAmount extends Amount {
 	@Override
 	public void incrementAmount() {
 		amount++;
-		System.out.println(amount);
+		amountHistory.append(amount + "\n");
 	}
 }
