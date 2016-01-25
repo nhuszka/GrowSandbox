@@ -5,6 +5,7 @@ import com.nhuszka.concurrency.thread.amount.Amount;
 public class AmountIncrementer implements Runnable {
 
 	private Amount amountToIncrement;
+	private int numOfIncrements = 3;
 
 	public AmountIncrementer(Amount amountToIncrement) {
 		this.amountToIncrement = amountToIncrement;
@@ -12,15 +13,14 @@ public class AmountIncrementer implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			System.out.println("Before " + amountToIncrement.getAmount());
+		while (numOfIncrements > 0) {
 			amountToIncrement.incrementAmount();
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("After " + amountToIncrement.getAmount());
+			numOfIncrements--;
 		}
 	}
 }

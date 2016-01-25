@@ -11,8 +11,8 @@ public class SleepMessages {
 		};
 
 		for (String element : importantInfo) {
-			// Pause for 1 seconds
-			sleep(1000);
+			// Pause for 0.1 seconds
+			sleep(100);
 			// Print a message
 			System.out.println(element);
 		}
