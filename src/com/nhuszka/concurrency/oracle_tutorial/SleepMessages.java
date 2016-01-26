@@ -1,4 +1,4 @@
-package com.nhuszka.concurrency.thread;
+package com.nhuszka.concurrency.oracle_tutorial;
 
 // https://docs.oracle.com/javase/tutorial/essential/concurrency/sleep.html
 public class SleepMessages {
