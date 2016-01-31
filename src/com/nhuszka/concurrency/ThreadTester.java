@@ -3,7 +3,6 @@ package com.nhuszka.concurrency;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nhuszka.concurrency.oracle_tutorial.SimpleThreads;
 import com.nhuszka.concurrency.thread.AmountIncrementer;
 import com.nhuszka.concurrency.thread.amount.Amount;
 import com.nhuszka.concurrency.thread.amount.NotThreadSafeAmount;
@@ -13,10 +12,14 @@ public class ThreadTester {
 
 	public static void main(String[] args) {
 		// new ThreadExtended().run();
+
 		// new Thread(new ThreadRunnable()).run();
-		//
+
 		// new SleepMessages().run();
-		SimpleThreads.runExample();
+
+		// new BowDeadlock().start();
+
+		// SimpleThreads.runExample();
 
 		// testThreadSafeAndNotSafe();
 	}
