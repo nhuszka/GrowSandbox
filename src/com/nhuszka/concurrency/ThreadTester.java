@@ -3,6 +3,7 @@ package com.nhuszka.concurrency;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nhuszka.concurrency.oracle_tutorial.producer_consumer.ProducerConsumer;
 import com.nhuszka.concurrency.thread.AmountIncrementer;
 import com.nhuszka.concurrency.thread.amount.Amount;
 import com.nhuszka.concurrency.thread.amount.NotThreadSafeAmount;
@@ -22,6 +23,8 @@ public class ThreadTester {
 		// SimpleThreads.runExample();
 
 		// testThreadSafeAndNotSafe();
+
+		new ProducerConsumer().start();
 	}
 
 	private static void testThreadSafeAndNotSafe() {
