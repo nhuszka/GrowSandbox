@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 // http://www.javaworld.com/article/2078809/java-concurrency/java-concurrency-java-101-the-next-generation-java-concurrency-without-the-pain-part-1.html?page=2
-public class SemaphoreDemo {
+public class Semaphore10ItemInPoolUsedBy11Threads {
 
 	public static void main(String[] args) {
 		final Pool pool = new Pool();

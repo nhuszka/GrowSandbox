@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 // http://www.javaworld.com/article/2078809/java-concurrency/java-concurrency-java-101-the-next-generation-java-concurrency-without-the-pain-part-1.html?page=2
-public class FutureCallableReadWebPage {
+public class FutureCallableReadWebPageInSomeSeconds {
 
 	public static void main(String[] args) {
 		final String pageName = "https://www.google.com";
