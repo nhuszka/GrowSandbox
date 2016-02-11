@@ -25,7 +25,7 @@ public class Reduce {
 				.reduce(adder)
 				.get() / size;
 
-		// in this case we don't get an Optional
+		// in this case we don't get an Optional:
 		// .reduce(0, adder) / size;
 	}
 }
