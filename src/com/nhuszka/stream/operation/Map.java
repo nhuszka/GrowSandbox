@@ -19,6 +19,7 @@ public class Map {
 				return rating.getName();
 			}
 		};
+		
 		return ratings
 				.stream()
 				.filter(rating -> rating.getGrade() == RatingCreator.MAX_GRADE)

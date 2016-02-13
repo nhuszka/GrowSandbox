@@ -72,6 +72,7 @@ public class TutorialsPointStreamExample {
 		System.out.println("Squares List: " + squaresList);
 		System.out.println("List: " + integers);
 
+		// STATISTICS
 		IntSummaryStatistics stats = integers.stream().mapToInt((x) -> x).summaryStatistics();
 
 		System.out.println("Highest number in List : " + stats.getMax());
