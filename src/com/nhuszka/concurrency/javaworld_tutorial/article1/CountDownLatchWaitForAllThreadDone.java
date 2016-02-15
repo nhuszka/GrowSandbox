@@ -1,4 +1,4 @@
-package com.nhuszka.concurrency.javaworld_tutorial;
+package com.nhuszka.concurrency.javaworld_tutorial.article1;
 
 import java.util.concurrent.CountDownLatch;
 

@@ -1,4 +1,4 @@
-package com.nhuszka.concurrency.javaworld_tutorial;
+package com.nhuszka.concurrency.javaworld_tutorial.article1;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
