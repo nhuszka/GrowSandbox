@@ -1,4 +1,4 @@
-package com.nhuszka.concurrency.file_searcher.algorithm;
+package com.nhuszka.concurrency.file_searcher.recursive_single_thread;
 
 import java.io.BufferedReader;
 import java.io.File;

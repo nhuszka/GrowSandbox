@@ -3,7 +3,7 @@ package com.nhuszka.concurrency.file_searcher;
 import java.io.File;
 import java.util.Collection;
 
-import com.nhuszka.concurrency.file_searcher.algorithm.FileSearcher;
+import com.nhuszka.concurrency.file_searcher.recursive_single_thread.FileSearcher;
 
 public class StartFileSearcher {
 
