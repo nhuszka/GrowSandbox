@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.nhuszka.concurrency.file_searcher.StartForkJoinFileSearcher;
+import com.nhuszka.concurrency.file_searcher.StartForkJoinMultiThreadFileSearcher;
 
 public class DirectorySearchTaskFactory {
 	
@@ -42,6 +42,6 @@ public class DirectorySearchTaskFactory {
 	}
 
 	private FileFilter createFileFilter() {
-		return file -> !file.isDirectory() && file.getName().endsWith(StartForkJoinFileSearcher.SEARCH_EXTENSION);
+		return file -> !file.isDirectory() && file.getName().endsWith(StartForkJoinMultiThreadFileSearcher.SEARCH_EXTENSION);
 	}
 }

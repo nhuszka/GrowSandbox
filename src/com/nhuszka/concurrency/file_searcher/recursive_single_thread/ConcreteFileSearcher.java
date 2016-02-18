@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.nhuszka.concurrency.file_searcher.StartFileSearcher;
+import com.nhuszka.concurrency.file_searcher.StartRecursiveSingleThreadFileSearcher;
 
 public class ConcreteFileSearcher implements Searcher {
 
@@ -25,7 +25,7 @@ public class ConcreteFileSearcher implements Searcher {
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			return reader
 					.lines()
-					.anyMatch(item -> item.contains(StartFileSearcher.SEARCH_TEXT));
+					.anyMatch(item -> item.contains(StartRecursiveSingleThreadFileSearcher.SEARCH_TEXT));
 		} catch (FileNotFoundException e) {
 			// TODO nicer exception handling
 			e.printStackTrace();

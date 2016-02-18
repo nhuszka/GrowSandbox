@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.nhuszka.concurrency.file_searcher.StartFileSearcher;
+import com.nhuszka.concurrency.file_searcher.StartRecursiveSingleThreadFileSearcher;
 
 public class DirectorySearcher implements Searcher {
 
@@ -36,6 +36,6 @@ public class DirectorySearcher implements Searcher {
 	}
 
 	private FileFilter createFileFilter() {
-		return file -> !file.isDirectory() && file.getName().endsWith(StartFileSearcher.SEARCH_EXTENSION);
+		return file -> !file.isDirectory() && file.getName().endsWith(StartRecursiveSingleThreadFileSearcher.SEARCH_EXTENSION);
 	}
 }

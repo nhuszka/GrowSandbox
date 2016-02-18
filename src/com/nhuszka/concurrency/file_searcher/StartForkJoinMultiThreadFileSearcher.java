@@ -7,7 +7,7 @@ import java.util.concurrent.ForkJoinPool;
 
 import com.nhuszka.concurrency.file_searcher.fork_join.SearchFileTask;
 
-public class StartForkJoinFileSearcher {
+public class StartForkJoinMultiThreadFileSearcher {
 	
 	// TODO inputs from web
 	public static final String SEARCH_TEXT = "aaa";

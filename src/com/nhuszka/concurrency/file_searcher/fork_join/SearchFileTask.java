@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.RecursiveAction;
 
-import com.nhuszka.concurrency.file_searcher.StartForkJoinFileSearcher;
+import com.nhuszka.concurrency.file_searcher.StartForkJoinMultiThreadFileSearcher;
 
 public class SearchFileTask extends RecursiveAction {
 
@@ -38,7 +38,7 @@ public class SearchFileTask extends RecursiveAction {
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			return reader
 					.lines()
-					.anyMatch(item -> item.contains(StartForkJoinFileSearcher.SEARCH_TEXT));
+					.anyMatch(item -> item.contains(StartForkJoinMultiThreadFileSearcher.SEARCH_TEXT));
 		} catch (FileNotFoundException e) {
 			// TODO nicer exception handling
 			e.printStackTrace();
