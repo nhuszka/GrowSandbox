@@ -17,6 +17,7 @@ public class StartForkJoinMultiThreadFileSearcher {
 
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
+		// TODO synchronize it!!!
 		Collection<File> searchResults = new ArrayList<>();
 
 		ForkJoinPool pool = new ForkJoinPool();
