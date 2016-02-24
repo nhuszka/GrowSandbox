@@ -11,16 +11,20 @@ import com.nhuszka.concurrency.file_searcher.parallel.shared.FilesWithLogs;
 public class StartParallelFileSearcher {
 
 	// TODO inputs from web
-	public static final String SEARCH_TEXT = "aaa";
-	public static final String SEARCH_EXTENSION = ".txt";
+	public static final String SEARCH_TEXT = "ez";
+	public static final String SEARCH_EXTENSION = ".mp3";
 
-	private static final String ROOT_DIRECTORY = "D:\\Read";
+	private static final String ROOT_DIRECTORY = "D:\\English";
+
+	static long startTime;
 
 	public static void log(String str, FilesWithLogs files) {
 		files.log(str);
 	}
 
+
 	public static void main(String[] args) {
+		startTime = System.currentTimeMillis();
 		final FilesWithLogs filesWithLogs = createSharedFileContainer();
 		final CyclicBarrier barrier = new CyclicBarrier(2, getReadFilesAndLogsAction(filesWithLogs));
 
@@ -44,6 +48,7 @@ public class StartParallelFileSearcher {
 				System.out.println(log);
 			}
 
+
 			System.out.println("--- Result files start ---");
 			for (File file : filesWithLogs.getFiles()) {
 				System.out.println(file.getAbsolutePath());
@@ -51,6 +56,8 @@ public class StartParallelFileSearcher {
 			System.out.println("--- Result files end ---");
 
 			System.out.println("\nMAIN thread exits...");
+
+			System.out.println("TIME (ms): " + (System.currentTimeMillis() - startTime));
 		};
 	}
 }
