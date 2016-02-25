@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.concurrent.RecursiveAction;
 
 import com.nhuszka.concurrency.file_searcher.StartForkJoinMultiThreadFileSearcher;
@@ -13,12 +12,12 @@ import com.nhuszka.concurrency.file_searcher.StartForkJoinMultiThreadFileSearche
 public class SearchFileTask extends RecursiveAction {
 
 	private static final long serialVersionUID = 1L;
-	private final Collection<File> files;
+	private final FilesWithLogs filesWithLogs;
 	private final File file;
-	
-	
-	public SearchFileTask(Collection<File> searchResults, File file) {
-		this.files = searchResults;
+
+
+	public SearchFileTask(FilesWithLogs filesWithLogs, File file) {
+		this.filesWithLogs = filesWithLogs;
 		this.file = file;
 	}
 
@@ -26,14 +25,14 @@ public class SearchFileTask extends RecursiveAction {
 	protected void compute() {
 		if (file.isFile()) {
 			if (isMatch(file)) {
-				files.add(file);
+				filesWithLogs.add(file);
 			}
 		} else { // directory
-			DirectorySearchTaskFactory subTaskFactory = new DirectorySearchTaskFactory(files, file);
+			DirectorySearchTaskFactory subTaskFactory = new DirectorySearchTaskFactory(filesWithLogs, file);
 			invokeAll(subTaskFactory.createSubTasks());
 		}
 	}
-	
+
 	private boolean isMatch(File file) {
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			return reader

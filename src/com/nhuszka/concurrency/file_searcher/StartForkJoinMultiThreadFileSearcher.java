@@ -2,9 +2,10 @@ package com.nhuszka.concurrency.file_searcher;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import com.nhuszka.concurrency.file_searcher.fork_join.FilesWithLogs;
 import com.nhuszka.concurrency.file_searcher.fork_join.SearchFileTask;
 
 public class StartForkJoinMultiThreadFileSearcher {
@@ -17,15 +18,20 @@ public class StartForkJoinMultiThreadFileSearcher {
 
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
-		// TODO synchronize it!!!
-		Collection<File> searchResults = new ArrayList<>();
+
+		FilesWithLogs filesWithLogs = createSharedFileContainer();
 
 		ForkJoinPool pool = new ForkJoinPool();
-		pool.invoke(new SearchFileTask(searchResults, new File(ROOT_DIRECTORY)));
+		pool.invoke(new SearchFileTask(filesWithLogs, new File(ROOT_DIRECTORY)));
 
-		for (File file : searchResults) {
+		for (File file : filesWithLogs.getFiles()) {
 			System.out.println(file.getAbsolutePath());
 		}
 		System.out.println("TIME (ms): " + (System.currentTimeMillis() - startTime));
+	}
+
+	private static FilesWithLogs createSharedFileContainer() {
+		ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+		return new FilesWithLogs(new ArrayList<>(), lock);
 	}
 }
