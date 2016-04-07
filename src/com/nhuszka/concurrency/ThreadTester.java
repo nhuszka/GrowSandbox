@@ -29,7 +29,7 @@ public class ThreadTester {
 		new BowSafeLock().start();
 	}
 
-	private static void testThreadSafeAndNotSafe() {
+	public static void testThreadSafeAndNotSafe() {
 		Amount amountNotSafe = new NotThreadSafeAmount();
 		System.out.println("\nNot thread safe");
 		testAmountIncrement(amountNotSafe);
