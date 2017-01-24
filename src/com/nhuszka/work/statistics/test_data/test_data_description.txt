@@ -1,0 +1,43 @@
+10 files
+
+Itin numbers:
+1001-1009	valid type and number
+991-997		invalid type
+0800		invalid number
+
+Files and itins in them:
+a	1001	1001	1002	(991)
+b	1002	1003	1003	1004	(992)
+c	1003	1004	(993)
+d	1003	1003	(994)
+e	1004	(995)
+f	1004	(996)
+g	1005	(997)
+h	1006	(997)	1010	1010
+i	1007	[]		1010	1010
+j	1008	1009	[0800]
+
+Stat:
+1001	in 1 file, 2 times
+1002	in 2 files, 1-1 times
+1003	in 3 files, 1-2-2 times
+1004	in 4 files, 1-1-1-1 times
+1005	in 1 files 1 times
+1006	in 1 files 1 times
+1007	in 1 files 1 times
+1008	in 1 files 1 times
+1009	in 1 files 1 times
+1010	in 2 files 4 times
+
+
+2 PNRs with wrong itin, but OK type		[i, j]
+8 files contains an other type			(a-h)
+
+
+PNRMRDIFFMINOR_DEP						okay
+PNRMRPDHXNOUNUCXNLDWITHCONFMATCH		wrong type
+
+
+Wrong type: 8 - 7 with different type, there is one which have 2 occurrences
+Incorrect: 2:
+OK type and correct: 10

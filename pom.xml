@@ -3,6 +3,12 @@
   <groupId>GrowSandbox</groupId>
   <artifactId>GrowSandbox</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  	<properties>
+  		<org-json.version>20140107</org-json.version>
+		<apache-commons-lang3.version>3.4</apache-commons-lang3.version>
+	</properties>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -16,4 +22,17 @@
       </plugin>
     </plugins>
   </build>
+  
+  <dependencies>
+  	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>${org-json.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>${apache-commons-lang3.version}</version>
+	</dependency>
+  </dependencies>
 </project>

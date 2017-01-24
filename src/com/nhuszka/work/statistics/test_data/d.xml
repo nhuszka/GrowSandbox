@@ -1,0 +1,14 @@
+<CIS_PNRS>
+	<PNR>
+		<reason_code>PNRMRDIFFMINOR_DEP</reason_code>
+		<itin>1003</itin>
+	</PNR>
+	<PNR>
+		<reason_code>PNRMRDIFFMINOR_DEP</reason_code>
+		<itin>1003</itin>
+	</PNR>
+	<PNR>
+		<reason_code>PNRMRPDHXNOUNUCXNLDWITHCONFMATCH</reason_code>
+		<itin>994</itin>
+	</PNR>
+</CIS_PNRS>
