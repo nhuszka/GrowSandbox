@@ -35,6 +35,14 @@ public class CornerstoneFileReader {
         ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_DEP_OSI");
         ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_ARR_OSI");
     }
+    
+    private static Set<String> ALLOWED_REASON_REMARKS = new HashSet<>();
+    static {
+    	ALLOWED_REASON_REMARKS.add("TIME CHANGE");
+    	ALLOWED_REASON_REMARKS.add("TIME CHANGE HIST");
+    	ALLOWED_REASON_REMARKS.add("TIME CHANGE OSI");
+    }
+    
 
     public void processDirectory(String rootDirectory) throws IOException {
         List<File> files = getFiles(rootDirectory);
@@ -68,7 +76,7 @@ public class CornerstoneFileReader {
                 JSONObject pnr = (JSONObject) pnrs.get(i);
                 data().addToAllThePnrsWithoutTypeFiltering(pnr);
                 if (isCorrectData(pnr)) {
-                    if (isAllowedChangeType(pnr)) {
+                    if (isAllowedChangeType(pnr) && isAllowedReasonRemark(pnr)) {
                         allowedCorrectPnrs.add(pnr);
                     }
                 } else {
@@ -80,7 +88,7 @@ public class CornerstoneFileReader {
         data().addCorrectAllowedTypePNRsByFileIndex(fileIndex, allowedCorrectPnrs);
     }
 
-    private boolean isCorrectData(JSONObject pnr) {
+	private boolean isCorrectData(JSONObject pnr) {
         Object changeType = pnr.get("reason_code");
         if (changeType == null || !(changeType instanceof String)) {
             return false;
@@ -102,4 +110,12 @@ public class CornerstoneFileReader {
         Object changeType = pnr.get("reason_code");
         return ALLOWED_CHANGE_TYPES.contains(changeType);
     }
+    
+    private boolean isAllowedReasonRemark(JSONObject pnr) {
+        Object reasonRemark = pnr.get("reason_remark");
+        if (reasonRemark == null || !(reasonRemark instanceof String)) {
+            return false;
+        }
+        return ALLOWED_REASON_REMARKS.contains(reasonRemark);
+	}
 }
