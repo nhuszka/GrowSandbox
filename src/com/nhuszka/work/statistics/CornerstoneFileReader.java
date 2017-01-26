@@ -1,5 +1,8 @@
 package com.nhuszka.work.statistics;
 
+import com.nhuszka.work.statistics.structure.PnrReasonCode;
+import com.nhuszka.work.statistics.structure.PnrReasonRemark;
+import com.nhuszka.work.statistics.structure.PnrRecord;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,38 +14,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static com.nhuszka.work.statistics.Data.data;
+import static com.nhuszka.work.statistics.util.Data.data;
+import static com.nhuszka.work.statistics.util.Config.config;
 
 public class CornerstoneFileReader {
-
-    private static Set<String> ALLOWED_CHANGE_TYPES;
-    static {
-        ALLOWED_CHANGE_TYPES = new HashSet<>();
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_DEP");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_DEP_HIST");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_ARR");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_ARR_HIST");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_DEP_OSI");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_DEP");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFMINOR_ARR_OSI");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_DEP_HIST");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_ARR");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_ARR_HIST");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_DEP_OSI");
-        ALLOWED_CHANGE_TYPES.add("PNRMRDIFFNOMINAL_ARR_OSI");
-    }
-    
-    private static Set<String> ALLOWED_REASON_REMARKS = new HashSet<>();
-    static {
-    	ALLOWED_REASON_REMARKS.add("TIME CHANGE");
-    	ALLOWED_REASON_REMARKS.add("TIME CHANGE HIST");
-    	ALLOWED_REASON_REMARKS.add("TIME CHANGE OSI");
-    }
-    
 
     public void processDirectory(String rootDirectory) throws IOException {
         List<File> files = getFiles(rootDirectory);
@@ -75,8 +52,11 @@ public class CornerstoneFileReader {
             for (int i = 0; i < pnrs.length(); i++){
                 JSONObject pnr = (JSONObject) pnrs.get(i);
                 data().addToAllThePnrsWithoutTypeFiltering(pnr);
+                data().addToAllPnrRecords(createPnrRecord(pnr));
+                data().addToPnrReasonCodes(pnr.getString("reason_code"));
+                data().addToReasonRemarks(pnr.getString("reason_remark"));
                 if (isCorrectData(pnr)) {
-                    if (isAllowedChangeType(pnr) && isAllowedReasonRemark(pnr)) {
+                    if (isAllowedReasonCode(pnr) && isAllowedReasonRemark(pnr)) {
                         allowedCorrectPnrs.add(pnr);
                     }
                 } else {
@@ -88,7 +68,11 @@ public class CornerstoneFileReader {
         data().addCorrectAllowedTypePNRsByFileIndex(fileIndex, allowedCorrectPnrs);
     }
 
-	private boolean isCorrectData(JSONObject pnr) {
+    private PnrRecord createPnrRecord(JSONObject pnr) {
+        return new PnrRecord(pnr);
+    }
+
+    private boolean isCorrectData(JSONObject pnr) {
         Object changeType = pnr.get("reason_code");
         if (changeType == null || !(changeType instanceof String)) {
             return false;
@@ -106,16 +90,29 @@ public class CornerstoneFileReader {
         }
     }
 
-    private boolean isAllowedChangeType(JSONObject pnr) {
-        Object changeType = pnr.get("reason_code");
-        return ALLOWED_CHANGE_TYPES.contains(changeType);
+    private boolean isAllowedReasonCode(JSONObject pnr) {
+        String property = "reason_code";
+        Object oProperty = pnr.get(property);
+        if (isStringProperty(oProperty)) {
+            return false;
+        }
+
+        PnrReasonCode reasonCode = PnrReasonCode.getReasonCode((String) oProperty);
+        return config().isAllowedReasonCode(reasonCode);
     }
     
     private boolean isAllowedReasonRemark(JSONObject pnr) {
-        Object reasonRemark = pnr.get("reason_remark");
-        if (reasonRemark == null || !(reasonRemark instanceof String)) {
+        String property = "reason_remark";
+        Object oProperty = pnr.get(property);
+        if (isStringProperty(oProperty)) {
             return false;
         }
-        return ALLOWED_REASON_REMARKS.contains(reasonRemark);
+
+        PnrReasonRemark pnrReasonRemark = PnrReasonRemark.getReasonRemark((String) oProperty);
+        return config().isAllowedReasonRemark(pnrReasonRemark);
 	}
+
+	private boolean isStringProperty(Object property) {
+         return property != null && (property instanceof String);
+    }
 }

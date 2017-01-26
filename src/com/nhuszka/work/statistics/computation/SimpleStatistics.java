@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nhuszka.work.statistics.Data.data;
+import static com.nhuszka.work.statistics.util.Data.data;
 import static com.nhuszka.work.statistics.util.MathUtil.computePercentage;
 
 public class SimpleStatistics implements CornerStoneStatistic {

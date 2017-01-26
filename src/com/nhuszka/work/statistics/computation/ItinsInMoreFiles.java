@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.nhuszka.work.statistics.Data.data;
+import static com.nhuszka.work.statistics.util.Data.data;
 
 public class ItinsInMoreFiles implements CornerStoneStatistic {
     private Map<Integer, List<ItinInWhichFilesTimes>> itinsByHowManyFilesContainThem = new HashMap<>();

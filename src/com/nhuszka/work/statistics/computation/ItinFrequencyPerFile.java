@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nhuszka.work.statistics.Data.data;
+import static com.nhuszka.work.statistics.util.Data.data;
 
 public class ItinFrequencyPerFile implements CornerStoneStatistic {
 

@@ -1,6 +1,6 @@
 package com.nhuszka.work.statistics.computation;
 
-import static com.nhuszka.work.statistics.Data.data;
+import static com.nhuszka.work.statistics.util.Data.data;
 
 public class RelevantChanges implements CornerStoneStatistic{
 

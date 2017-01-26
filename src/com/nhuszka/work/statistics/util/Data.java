@@ -1,9 +1,11 @@
-package com.nhuszka.work.statistics;
+package com.nhuszka.work.statistics.util;
 
+import com.nhuszka.work.statistics.structure.PnrRecord;
 import org.apache.commons.lang3.tuple.Pair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -118,5 +120,34 @@ public class Data {
 
     public Map<Integer, List<Pair<Integer, Integer>>> getItinFrequencyByFile() {
         return frequencyByFile;
+    }
+
+    private List<PnrRecord> allPnrRecords = new ArrayList<>();
+    public void addToAllPnrRecords(PnrRecord pnrRecord) {
+        allPnrRecords.add(pnrRecord);
+    }
+    public List<PnrRecord> getAllPnrRecords() {
+        return allPnrRecords;
+    }
+
+
+    private Set<String> pnrReasonCodes = new HashSet<>();
+    public void addToPnrReasonCodes(String pnrReason) {
+        pnrReasonCodes.add(pnrReason);
+    }
+    public List<String> getPnrReasonCodes() {
+        List<String> pnrReasonCodesList = new ArrayList<>(pnrReasonCodes);
+        Collections.sort(pnrReasonCodesList);
+        return pnrReasonCodesList;
+    }
+
+    private Set<String> reasonRemarks = new HashSet<>();
+    public void addToReasonRemarks(String reasonRemark) {
+        reasonRemarks.add(reasonRemark);
+    }
+    public List<String> getReasonRemarks() {
+        List<String> reasonRemarksList = new ArrayList<>(reasonRemarks);
+        Collections.sort(reasonRemarksList);
+        return reasonRemarksList;
     }
 }
